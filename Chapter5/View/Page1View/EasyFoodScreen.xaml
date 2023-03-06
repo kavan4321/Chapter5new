@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Chapter5.View.Page1View.EasyFoodScreen"
+             xmlns:Foood="clr-namespace:Chapter5.ViewModel.Page1ViewModel.Easy"
+             xmlns:Selects="clr-namespace:Chapter5.Templates.FoodSelect"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="AntiqueWhite"
+             Title="EasyFoodScreen">
+
+    <ContentPage.BindingContext>
+        <Foood:EasyFoodViewModel></Foood:EasyFoodViewModel>
+    </ContentPage.BindingContext>
+
+
+    <ScrollView>
+        <StackLayout
+            Padding="10"
+            Spacing="15">
+            <HorizontalStackLayout 
+                HorizontalOptions="Center">
+                <Label
+                    TextColor="SeaGreen"
+                    FontSize="25"
+                    FontAttributes="Bold"
+                    HorizontalOptions="Center"
+                    Text="EASY"></Label>
+                <Label
+                    FontSize="25"
+                    FontAttributes="Bold"
+                    HorizontalOptions="Center"
+                    Text="FOOD"></Label>
+            </HorizontalStackLayout>
+
+            <CollectionView 
+                ItemsSource="{Binding FoodDetail}"
+                ItemTemplate="{StaticResource FoodSelector}">
+            </CollectionView>
+        </StackLayout>
+    </ScrollView>
+
+
+
+    <ContentPage.Resources>
+        
+
+
+        <!--new items-->
+        <DataTemplate 
+            x:Key="NewFood">
+            <Frame 
+                   Padding="0"
+                   Margin="0,5"
+                   CornerRadius="20">
+                <Grid                    
+                      ColumnDefinitions="auto,*"
+                      RowDefinitions="auto,auto"
+                      ColumnSpacing="10"
+                      RowSpacing="10">
+                    <Border                      
+                        Grid.Row="0"
+                        Grid.RowSpan="2"
+                        Margin="10"
+                        StrokeShape="RoundRectangle 15">
+                        <Image 
+                               HeightRequest="80"
+                               WidthRequest="80"
+                               Source="{Binding ImageSource}"/>
+                    </Border>
+                    <Border                        
+                        Grid.Column="1"
+                        StrokeShape="RoundRectangle 0,10,10,0"
+                        VerticalOptions="Start"                     
+                        HorizontalOptions="End"
+                        BackgroundColor="SeaGreen"
+                        >
+                        <Label 
+                            
+                            
+                               Text="New"
+                               Padding="10,5"
+                               FontAttributes="Bold"
+                               HorizontalOptions="Center"
+                               TextColor="White"/>
+                    </Border>
+                    <Label                    
+                           Grid.Column="1"
+                           Text="{Binding FoodName}"
+                           FontSize="20"
+                           FontAttributes="Bold"
+                           VerticalOptions="End"/>
+                    <Grid                  
+                      Grid.Row="1"
+                      Grid.Column="1"
+                      ColumnDefinitions="auto,auto,auto"
+                      ColumnSpacing="15">
+                        <Label 
+                            Grid.Column="0"
+                            Text="{Binding FoodStar,StringFormat='⭐ {0}'}"/>
+                        <Label                                 
+                            Grid.Column="1"
+                            Text="{Binding FoodCal, StringFormat='🔥 {0:d} KCal'}"/>
+                        <Label                          
+                            Grid.Column="2"
+                            Text="{Binding FoodTime,StringFormat='⌚ {0}'}"/>
+                    </Grid>
+                </Grid>
+            </Frame>
+        </DataTemplate>
+
+
+
+        <!--old food-->
+        <DataTemplate 
+            x:Key="OtherFood">
+            <Frame 
+                   Padding="0"
+                   Margin="0,5"
+                   CornerRadius="20">
+                <Grid                    
+                      ColumnDefinitions="auto,*"
+                      RowDefinitions="auto,auto"
+                      ColumnSpacing="10"
+                      RowSpacing="10">
+                    <Border                      
+                        Grid.Row="0"
+                        Grid.RowSpan="2"
+                        Margin="10"
+                        StrokeShape="RoundRectangle 15">
+                        <Image 
+                               HeightRequest="80"
+                               WidthRequest="80"
+                               Source="{Binding ImageSource}"/>
+                    </Border>
+
+
+
+                    <Label                       
+                        Grid.Column="1"
+                        Text="{Binding FoodName}"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        VerticalOptions="End"/>
+                    <Grid                  
+                      Grid.Row="1"
+                      Grid.Column="1"
+                      ColumnDefinitions="auto,auto,auto"
+                      ColumnSpacing="15">
+
+                        <Label 
+                            Grid.Column="0"
+                            Text="{Binding FoodStar,StringFormat='⭐ {0}'}"/>
+                        <Label 
+                                
+                            Grid.Column="1"
+                            Text="{Binding FoodCal, StringFormat='🔥 {0:d} KCal'}"/>
+
+                        <Label                            
+                            Grid.Column="2"
+                            Text="{Binding FoodTime,StringFormat='⌚ {0}'}"/>
+                    </Grid>
+                </Grid>
+            </Frame>
+        </DataTemplate>
+
+        <!--templete selection-->
+        <Selects:FoodTemplate 
+            x:Key="FoodSelector"
+            NewFood="{StaticResource NewFood}"
+            OtherFood="{StaticResource OtherFood}" />
+
+    </ContentPage.Resources>
+
+
+
+   
+
+
+</ContentPage>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Chapter5.View.Page3View.ExpenseScreen"
+             NavigationPage.HasNavigationBar="False"
+             xmlns:ViewModel="clr-namespace:Chapter5.ViewModel.Page3ViewModel.ExpenseViewModel"
+             Title="ExpenseScreen">
+
+    <ContentPage.BindingContext>
+        <ViewModel:ExpenseViewModel></ViewModel:ExpenseViewModel>
+    </ContentPage.BindingContext>
+    
+    <ScrollView>
+    <StackLayout>
+        <Border
+            Padding="10"
+            BackgroundColor="LightBlue"
+            StrokeShape="RoundRectangle 0,0,10,10">
+            <StackLayout 
+                Spacing="10">
+            <HorizontalStackLayout 
+                Margin="0,10"
+                HorizontalOptions="Center">
+                <Label
+                    FontSize="16"
+                    TextColor="IndianRed"
+                    Text="Total Expense:"/>
+                <Label
+                    TextColor="White"
+                    FontSize="16"
+                    Text="{Binding TotalAmount}"/>
+            </HorizontalStackLayout>
+                <Entry
+                    TextColor="White"
+                    PlaceholderColor="White"
+                    Placeholder="Expence Name"
+                    Text="{Binding ExpenseName}"></Entry>
+                <Entry
+                    Keyboard="Numeric"
+                    TextColor="White"
+                    PlaceholderColor="White"
+                    Placeholder="{Binding Amount}"></Entry>
+                <Button
+                    BackgroundColor="CornflowerBlue"
+                    CornerRadius="30"
+                    Command="{Binding AddCommand}"
+                    Text="Add Expance"></Button>
+            </StackLayout>
+        </Border>
+
+            <CollectionView
+                ItemsSource="{Binding Expense}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <HorizontalStackLayout
+                            Padding="10">
+                            <Label
+                                Text="{Binding ExpenseName}"/>
+                            <Label
+                                HorizontalOptions="End"
+                                Text="{Binding Amount,StringFormat='{0} Rs'}"/>
+                        </HorizontalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+    </StackLayout>
+    </ScrollView>
+    
+</ContentPage>

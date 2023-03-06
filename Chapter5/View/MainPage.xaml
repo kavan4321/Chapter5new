@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Chapter5.MainPage"
+             xmlns:Collection="clr-namespace:Chapter5.ViewModel.CollectionData"
+            >
+    <ContentPage.BindingContext>
+        <Collection:MainPageViewModel></Collection:MainPageViewModel>
+    </ContentPage.BindingContext>
+
+    
+    <CollectionView
+        
+        ItemsSource="{Binding Cars}"
+        SelectionMode="Single"
+        Margin="10"
+        SelectionChanged="CollectionView_SelectionChanged"
+        >
+        <CollectionView.Header>
+            <Label
+                BackgroundColor="LightSeaGreen"
+                Padding="20"
+                Text="Car Details"></Label>
+        </CollectionView.Header>
+        <CollectionView.Footer>
+            <Label
+                BackgroundColor="LightSeaGreen"
+                Padding="10"
+                Text="End Of List"></Label>
+        </CollectionView.Footer>
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+            
+                <SwipeView>
+                    <SwipeView.LeftItems>
+                        <SwipeItems >
+                            <SwipeItem 
+                                Text="Favorite"
+                                BackgroundColor="LightCoral"
+                                ></SwipeItem>
+                            <SwipeItem
+                                Text="Delete"
+                                BackgroundColor="CadetBlue"
+                                ></SwipeItem>
+                        </SwipeItems>
+                    </SwipeView.LeftItems>
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup Name="CommonState">
+                            <VisualState Name="Normal"></VisualState>
+                            <VisualState Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter
+                                        TargetName="Cars"
+                                        Property="BackgroundColor"
+                                        Value="Blue"></Setter>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                    <StackLayout x:Name="Cars">
+                        <StackLayout 
+                    Orientation="Horizontal"
+                    Margin="10"
+                    >
+                        <VerticalStackLayout VerticalOptions="Center">
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="20"
+                                    Text="{Binding Brand,StringFormat='Brand: {0}'}"
+                    ></Label>
+                            <Label
+                                FontSize="16"
+                                FontAttributes="Italic"
+                                    Text="{Binding Name,StringFormat='Name: {0}'}"
+                    ></Label>
+                        </VerticalStackLayout>
+                        <Label
+                        Margin="0,0,10,0"
+                        VerticalOptions="Center"
+                        HorizontalOptions="EndAndExpand"
+                            FontSize="15"
+                                     Text="{Binding Speed,StringFormat='Speed: {0}'}"
+                    ></Label>
+                    </StackLayout>
+                    </StackLayout>
+                </SwipeView>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+    
+
+</ContentPage>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Chapter5.View.Page2View.FoodDeliveryScreen"
+             xmlns:ViewModel="clr-namespace:Chapter5.ViewModel.Pag2ViewModel.DeliveryViewModels"
+             xmlns:Templete="clr-namespace:Chapter5.Templates.DeliveryTemp"
+             Title="Food Delivery">
+    <ContentPage.BindingContext>
+        <ViewModel:FoodDeliveryViewModel></ViewModel:FoodDeliveryViewModel>
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <StackLayout>
+            <CollectionView
+                ItemsSource="{Binding DeliveryDetails}"
+                ItemTemplate="{StaticResource FoodSelector}">
+            </CollectionView>
+        </StackLayout>
+    </ScrollView>
+
+    <ContentPage.Resources>
+        <DataTemplate
+            x:Key="VegItems">
+
+            <Frame 
+                Margin="5,10"
+                Padding="10"    
+                BorderColor="LightGreen"
+                BackgroundColor="LightGreen">
+            <Grid  
+                ColumnSpacing="20"
+                ColumnDefinitions="*,Auto">
+                <VerticalStackLayout 
+                    Spacing="5"
+                    Grid.Column="0"
+                    VerticalOptions="Center">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        Text="{Binding FoodName}"/>
+                    <Label
+                        Text="{Binding FoodPrize,StringFormat='$ {0}'}"></Label>
+                </VerticalStackLayout>
+                <Image
+                    Grid.Column="1"
+                    HeightRequest="100"
+                    WidthRequest="100"
+                    HorizontalOptions="End"
+                    Source="{Binding FoodImage}"></Image>
+            </Grid>
+            </Frame>
+        </DataTemplate>
+
+        
+        <DataTemplate
+            x:Key="NonVegItems">
+            <Frame 
+                Margin="5,10"
+                Padding="10"   
+                BorderColor="IndianRed"
+                BackgroundColor="IndianRed">
+                <Grid   
+                ColumnSpacing="20"
+                ColumnDefinitions="Auto,*">
+                    <Image
+                        Grid.Column="0"
+                        HeightRequest="100"
+                        WidthRequest="100"
+                        HorizontalOptions="Start"
+                        Source="{Binding FoodImage}"></Image>
+                    <VerticalStackLayout 
+                        Spacing="5"
+                        Grid.Column="1"
+                        VerticalOptions="Center">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="20"
+                            TextColor="White"
+                            Text="{Binding FoodName}"/>
+                        <Label
+                            TextColor="White"
+                            Text="{Binding FoodPrize,StringFormat='$ {0}'}"></Label>
+                    </VerticalStackLayout>
+                    
+                </Grid>
+            </Frame>
+        </DataTemplate>
+
+
+        <Templete:DeliveryTemplate
+            x:Key="FoodSelector"
+            VegItems="{StaticResource VegItems}"
+            NonVegItems="{StaticResource NonVegItems}"
+            ></Templete:DeliveryTemplate>
+    </ContentPage.Resources>
+   
+</ContentPage>
