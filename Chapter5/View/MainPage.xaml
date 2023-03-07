@@ -30,7 +30,7 @@
         </CollectionView.Footer>
         <CollectionView.ItemTemplate>
             <DataTemplate>
-            
+          
                 <SwipeView>
                     <SwipeView.LeftItems>
                         <SwipeItems >
@@ -57,6 +57,8 @@
                             </VisualState>
                         </VisualStateGroup>
                     </VisualStateManager.VisualStateGroups>
+                    
+                    
                     <StackLayout x:Name="Cars">
                         <StackLayout 
                     Orientation="Horizontal"

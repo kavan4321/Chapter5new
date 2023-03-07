@@ -50,6 +50,8 @@
 
 	<ItemGroup>
 	  <None Remove="Resources\Images\chicken.png" />
+	  <None Remove="Resources\Images\cupboard.png" />
+	  <None Remove="Resources\Images\deletebutton.png" />
 	  <None Remove="Resources\Images\icecream.png" />
 	  <None Remove="Resources\Images\momos.png" />
 	  <None Remove="Resources\Images\nonvegburger.png" />
@@ -57,6 +59,8 @@
 	  <None Remove="Resources\Images\pizza.png" />
 	  <None Remove="Resources\Images\rice.png" />
 	  <None Remove="Resources\Images\sanwitch.png" />
+	  <None Remove="Resources\Images\sofa.png" />
+	  <None Remove="Resources\Images\table.png" />
 	  <None Remove="Resources\Images\tandoori.png" />
 	  <None Remove="Resources\Images\thali.png" />
 	  <None Remove="Resources\Images\vadapav.png" />
@@ -72,10 +76,13 @@
 	  <MauiXaml Update="View\Page1View\EasyFoodScreen.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="View\Page2View\FoodDeliveryScreen.xaml">
+	  <MauiXaml Update="View\Page3View\FurnitureScreen.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="View\Page3View\ExpenseScreen.xaml">
+	  <MauiXaml Update="View\Page6View\FoodDeliveryScreen.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="View\Page2View\ExpenseScreen.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

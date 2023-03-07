@@ -1,8 +1,8 @@
 ﻿
-using Chapter5.Model.Page2Model;
+using Chapter5.Model.Page6Model;
 using System.Collections.ObjectModel;
 
-namespace Chapter5.ViewModel.Pag2ViewModel.DeliveryViewModels
+namespace Chapter5.ViewModel.Page6ViewModel.DeliveryViewModels
 {
     public class FoodDeliveryViewModel
     {

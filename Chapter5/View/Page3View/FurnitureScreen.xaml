@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Chapter5.View.Page3View.FurnitureScreen"
+             xmlns:ViewModel="clr-namespace:Chapter5.ViewModel.Page3ViewModel.FurnitureViewModels"
+             xmlns:Template="clr-namespace:Chapter5.Templates.FurnitureTemp"
+             Title="FurnitureScreen">
+
+    <ContentPage.BindingContext>
+        <ViewModel:FurnitureViewModel></ViewModel:FurnitureViewModel>
+    </ContentPage.BindingContext>
+    <ScrollView>
+        <StackLayout
+            Padding="10">
+            <Label
+                FontAttributes="Bold"
+                FontSize="18"
+                Text="Trending"/>
+            <CollectionView
+                ItemsSource="{Binding FurnitureDetails}"
+                ItemTemplate="{StaticResource Selector}">
+
+            </CollectionView>
+        </StackLayout>
+    </ScrollView>
+
+    <ContentPage.Resources>
+        <DataTemplate
+            x:Key="ChairTemplate">
+            <Frame
+                CornerRadius="20"
+                Margin="0,10"
+                Padding="10">
+                <Grid
+                    ColumnSpacing="10"
+                    ColumnDefinitions="Auto,*,Auto">
+                    <Border
+                        Grid.Column="0"
+                        StrokeShape="RoundRectangle 10">
+                        <Image
+                            WidthRequest="60"
+                            HeightRequest="80"
+                            Source="{Binding FurnitureImage}"></Image>
+                    </Border>
+                    <VerticalStackLayout
+                        VerticalOptions="Center"
+                        Grid.Column="1">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="18"
+                            Text="{Binding FurnitureName}"/>
+                        <StackLayout
+                            Orientation="Horizontal">
+                            <Label
+                                FontSize="14"
+                                Text="{Binding FurniturePrize,StringFormat='{0} Rs'}"/>
+                            <Label
+                                Margin="0,0,10,0"
+                                HorizontalOptions="EndAndExpand"
+                                FontSize="14"
+                                TextDecorations="Strikethrough"
+                                Text="{Binding FurnitureDiscount,StringFormat='{0} Rs'}"/>
+                        </StackLayout>
+                     </VerticalStackLayout>
+                     <Button
+                        CornerRadius="10"
+                        WidthRequest="110"
+                        HeightRequest="50"
+                        Grid.Column="2"                                  
+                        Text="Buy Now"></Button>
+                    </Grid>
+                </Frame>
+        </DataTemplate>
+        <DataTemplate
+            x:Key="TableTemplate">
+            <Frame
+                CornerRadius="20"
+                Margin="0,10"
+                Padding="10">
+                <Grid
+                    ColumnSpacing="10"
+                    ColumnDefinitions="Auto,*,Auto">
+                    <Border
+                        Grid.Column="0"
+                        StrokeShape="RoundRectangle 10">
+                        <Image
+                            WidthRequest="60"
+                            HeightRequest="80"
+                            Source="{Binding FurnitureImage}"></Image>
+                    </Border>
+                    <VerticalStackLayout
+                        VerticalOptions="Center"
+                        Grid.Column="1">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="18"
+                            Text="{Binding FurnitureName}"/>
+                        <StackLayout
+                            Orientation="Horizontal">
+                            <Label
+                                FontSize="14"
+                                Text="{Binding FurniturePrize,StringFormat='{0} Rs'}"/>
+                            <Label
+                                Margin="0,0,10,0"
+                                HorizontalOptions="EndAndExpand"
+                                FontSize="14"
+                                TextDecorations="Strikethrough"
+                                Text="{Binding FurnitureDiscount,StringFormat='{0} Rs'}"/>
+                        </StackLayout>
+                    </VerticalStackLayout>
+                    <Button
+                        CornerRadius="10"
+                        WidthRequest="110"
+                        HeightRequest="50"
+                        Grid.Column="2"                                  
+                        Text="Buy Now"></Button>
+                </Grid>
+            </Frame>
+        </DataTemplate>
+        <DataTemplate
+            x:Key="SofaTemplate">
+            <Frame
+                CornerRadius="20"
+                Margin="0,10"
+                Padding="10">
+                <Grid
+                    ColumnSpacing="10"
+                    ColumnDefinitions="Auto,*,Auto">
+                    <Border
+                        Grid.Column="0"
+                        StrokeShape="RoundRectangle 10">
+                        <Image
+                            WidthRequest="60"
+                            HeightRequest="80"
+                            Source="{Binding FurnitureImage}"></Image>
+                    </Border>
+                    <VerticalStackLayout
+                        VerticalOptions="Center"
+                        Grid.Column="1">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="18"
+                            Text="{Binding FurnitureName}"/>
+                        <StackLayout
+                            Orientation="Horizontal">
+                            <Label
+                                FontSize="14"
+                                Text="{Binding FurniturePrize,StringFormat='{0} Rs'}"/>
+                            <Label
+                                Margin="0,0,10,0"
+                                HorizontalOptions="EndAndExpand"
+                                FontSize="14"
+                                TextDecorations="Strikethrough"
+                                Text="{Binding FurnitureDiscount,StringFormat='{0} Rs'}"/>
+                        </StackLayout>
+                    </VerticalStackLayout>
+                    <Button
+                        CornerRadius="10"
+                        WidthRequest="110"
+                        HeightRequest="50"
+                        Grid.Column="2"                                  
+                        Text="Buy Now"></Button>
+                </Grid>
+            </Frame>
+        </DataTemplate>
+        <DataTemplate
+            x:Key="CupBoaradTemplate">
+            <Frame
+                CornerRadius="20"
+                Margin="0,10"
+                Padding="10">
+                <Grid
+                    ColumnSpacing="10"
+                    ColumnDefinitions="Auto,*,Auto">
+                    <Border
+                        Grid.Column="0"
+                        StrokeShape="RoundRectangle 10">
+                        <Image
+                            WidthRequest="60"
+                            HeightRequest="80"
+                            Source="{Binding FurnitureImage}"></Image>
+                    </Border>
+                    <VerticalStackLayout
+                        VerticalOptions="Center"
+                        Grid.Column="1">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="18"
+                            Text="{Binding FurnitureName}"/>
+                        <StackLayout
+                            Orientation="Horizontal">
+                            <Label
+                                FontSize="14"
+                                Text="{Binding FurniturePrize,StringFormat='{0} Rs'}"/>
+                            <Label
+                                Margin="0,0,10,0"
+                                HorizontalOptions="EndAndExpand"
+                                FontSize="14"
+                                TextDecorations="Strikethrough"
+                                Text="{Binding FurnitureDiscount,StringFormat='{0} Rs'}"/>
+                        </StackLayout>
+                    </VerticalStackLayout>
+                    <Button
+                        CornerRadius="10"
+                        WidthRequest="110"
+                        HeightRequest="50"
+                        Grid.Column="2"                                  
+                        Text="Buy Now"></Button>
+                </Grid>
+            </Frame>
+        </DataTemplate>
+
+        <Template:FurnitureTemplate
+            x:Key="Selector"
+            ChairTemplate="{StaticResource ChairTemplate}"
+            TableTemplate="{StaticResource TableTemplate}"
+            SofaTemplate="{StaticResource SofaTemplate}"
+            CupBoaradTemplate="{StaticResource CupBoaradTemplate}"></Template:FurnitureTemplate>
+    </ContentPage.Resources>
+</ContentPage>

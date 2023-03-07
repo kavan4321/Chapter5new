@@ -1,5 +1,5 @@
 ﻿
-namespace Chapter5.Model.Page2Model
+namespace Chapter5.Model.Page6Model
 {
     public  class FoodDeliveryModel
     {

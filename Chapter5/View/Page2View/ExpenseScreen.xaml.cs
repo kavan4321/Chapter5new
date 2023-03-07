@@ -1,6 +1,6 @@
-using Chapter5.ViewModel.Page3ViewModel.ExpenseViewModel;
+using Chapter5.ViewModel.Page2ViewModel.ExpenseViewModel;
 
-namespace Chapter5.View.Page3View;
+namespace Chapter5.View.Page2View;
 
 public partial class ExpenseScreen : ContentPage
 {

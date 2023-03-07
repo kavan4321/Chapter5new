@@ -1,4 +1,4 @@
-namespace Chapter5.View.Page2View;
+namespace Chapter5.View.Page6View;
 
 public partial class FoodDeliveryScreen : ContentPage
 {

@@ -1,5 +1,5 @@
 ﻿
-using Chapter5.Model.Page2Model;
+using Chapter5.Model.Page6Model;
 
 namespace Chapter5.Templates.DeliveryTemp
 {
