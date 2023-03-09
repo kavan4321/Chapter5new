@@ -49,6 +49,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\chairtwo.png" />
 	  <None Remove="Resources\Images\chicken.png" />
 	  <None Remove="Resources\Images\cupboard.png" />
 	  <None Remove="Resources\Images\deletebutton.png" />

@@ -9,22 +9,8 @@
     <ContentPage.BindingContext>
         <ViewModel:FurnitureViewModel></ViewModel:FurnitureViewModel>
     </ContentPage.BindingContext>
-    <ScrollView>
-        <StackLayout
-            Padding="10">
-            <Label
-                FontAttributes="Bold"
-                FontSize="18"
-                Text="Trending"/>
-            <CollectionView
-                ItemsSource="{Binding FurnitureDetails}"
-                ItemTemplate="{StaticResource Selector}">
-
-            </CollectionView>
-        </StackLayout>
-    </ScrollView>
-
     <ContentPage.Resources>
+
         <DataTemplate
             x:Key="ChairTemplate">
             <Frame
@@ -51,9 +37,10 @@
                             Text="{Binding FurnitureName}"/>
                         <StackLayout
                             Orientation="Horizontal">
-                            <Label
+                            <Label 
                                 FontSize="14"
                                 Text="{Binding FurniturePrize,StringFormat='{0} Rs'}"/>
+
                             <Label
                                 Margin="0,0,10,0"
                                 HorizontalOptions="EndAndExpand"
@@ -61,16 +48,17 @@
                                 TextDecorations="Strikethrough"
                                 Text="{Binding FurnitureDiscount,StringFormat='{0} Rs'}"/>
                         </StackLayout>
-                     </VerticalStackLayout>
-                     <Button
+                    </VerticalStackLayout>
+                    <Button
                         CornerRadius="10"
                         WidthRequest="110"
                         HeightRequest="50"
                         Grid.Column="2"                                  
                         Text="Buy Now"></Button>
-                    </Grid>
-                </Frame>
+                </Grid>
+            </Frame>
         </DataTemplate>
+
         <DataTemplate
             x:Key="TableTemplate">
             <Frame
@@ -117,6 +105,7 @@
                 </Grid>
             </Frame>
         </DataTemplate>
+
         <DataTemplate
             x:Key="SofaTemplate">
             <Frame
@@ -163,6 +152,7 @@
                 </Grid>
             </Frame>
         </DataTemplate>
+
         <DataTemplate
             x:Key="CupBoaradTemplate">
             <Frame
@@ -210,11 +200,78 @@
             </Frame>
         </DataTemplate>
 
+        <DataTemplate 
+            x:Key="EmptyTemplate">
+            <StackLayout>
+                <Label
+                    Text="No Content"/>
+            </StackLayout>
+        </DataTemplate>
+
         <Template:FurnitureTemplate
             x:Key="Selector"
             ChairTemplate="{StaticResource ChairTemplate}"
             TableTemplate="{StaticResource TableTemplate}"
             SofaTemplate="{StaticResource SofaTemplate}"
-            CupBoaradTemplate="{StaticResource CupBoaradTemplate}"></Template:FurnitureTemplate>
+            CupBoaradTemplate="{StaticResource CupBoaradTemplate}"
+            EmptyTemplate="{StaticResource EmptyTemplate}"
+    ></Template:FurnitureTemplate>
     </ContentPage.Resources>
+
+    
+    
+    
+    <ScrollView>
+        <StackLayout
+            Padding="10">
+            <CollectionView
+                ItemsSource="{Binding FurnitureTypesDetails}"
+                SelectionMode="Single"
+                SelectionChanged="CollectionView_SelectionChanged"
+                ItemsLayout="HorizontalList">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup Name="CommonState">
+                                    <VisualState Name="Normal"></VisualState>
+                                    <VisualState Name="Selected">
+                                        <VisualState.Setters>
+                                            <Setter
+                                            TargetName="ColorChanged"
+                                            Property="BackgroundColor"
+                                            Value="YellowGreen"></Setter>
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Frame   
+                                x:Name="ColorChanged"
+                                Margin="10"
+                                HeightRequest="110"
+                                Padding="10">
+                            <Image
+                                Source="{Binding FurnitureImage}"></Image>
+                            </Frame>
+                            <Label
+                                FontSize="16"
+                                FontAttributes="Bold"
+                                HorizontalOptions="Center"
+                                Text="{Binding FurnitureType}"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Label
+                FontAttributes="Bold"
+                FontSize="18"
+                Text="Trending"/>
+            <CollectionView
+                ItemsSource="{Binding FurnitureDetails}"
+                ItemTemplate="{StaticResource Selector}">
+
+            </CollectionView>
+        </StackLayout>
+    </ScrollView>
+
 </ContentPage>

@@ -30,7 +30,6 @@
         </CollectionView.Footer>
         <CollectionView.ItemTemplate>
             <DataTemplate>
-          
                 <SwipeView>
                     <SwipeView.LeftItems>
                         <SwipeItems >
