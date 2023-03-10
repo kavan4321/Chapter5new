@@ -22,6 +22,5 @@ public partial class FurnitureScreen : ContentPage
         string name = (e.CurrentSelection.FirstOrDefault() as FurnitureTypeModel)?.FurnitureType;
         Toast.Make(name, ToastDuration.Long).Show();
 		_viewModel.ItemSelect = name;
-		_viewModel.ChangeCommand.Execute(this);
     }
 } 

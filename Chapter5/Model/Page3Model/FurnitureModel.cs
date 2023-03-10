@@ -17,11 +17,12 @@ namespace Chapter5.Model.Page3Model
             Tables,
             Sofa,
             CupBoards
-        }
+        }   
+        public int FurnitureCount { get;set; }
         public string FurnitureType { get;set; }
         public string FurnitureName { get; set; }
         public string FurniturePrize { get; set; }
         public string FurnitureImage { get; set; }
-        public string FurnitureDiscount { get; set; }       
+        public int FurnitureDiscount { get; set; }       
     }
 }

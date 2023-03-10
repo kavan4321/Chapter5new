@@ -1,26 +1,19 @@
-﻿
-using Chapter5.Model.Page3Model;
+﻿using Chapter5.Model.Page3Model;
 using Chapter5.Templates.FurnitureTemp;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
+using Vision;
 
 namespace Chapter5.ViewModel.Page3ViewModel.FurnitureViewModels
 {
      public class FurnitureViewModel :INotifyPropertyChanged
      {
-        private readonly FurnitureTemplate _template;
-        public ICommand ChangeCommand { get;private set; }
-        
-        public void Values()
-        {
-            if (ItemSelect == null)
-            {
-              ItemSelect="Chairs";
-            }                   
-        }
-        private string _itemSelect="Chairs";
+        private readonly FurnitureModel _model;
+        public ICommand ChangeCommand { get; private set; }
+        private string _itemSelect;
         public string ItemSelect
         {
             get
@@ -36,13 +29,29 @@ namespace Chapter5.ViewModel.Page3ViewModel.FurnitureViewModels
         public ObservableCollection<FurnitureModel> FurnitureDetails { get; set;}
         public ObservableCollection<FurnitureTypeModel> FurnitureTypesDetails { get; set;}
 
+        private ObservableCollection<FurnitureModel> _showDetails;
+        public ObservableCollection<FurnitureModel> ShowDetails 
+        {
+            get { return _showDetails}
+            set
+            {
+                _showDetails = value;
+                OnPropertyChanged();    
+            } 
+        }
+
+
+       
+
+
+
+        
         public FurnitureViewModel() 
         {
-
-            ChangeCommand = new Command(Values);
+            
             FurnitureTypeValue();
-            DetailData();
-             
+            FurnitureData();
+            ChangeCommand = new Command(ItemChange);
         }
 
         public void FurnitureTypeValue()
@@ -52,7 +61,7 @@ namespace Chapter5.ViewModel.Page3ViewModel.FurnitureViewModels
                 new FurnitureTypeModel()
                 {
                     FurnitureType=FurnitureModel.FurnitureTypes.Chairs.ToString(),
-                    FurnitureImage="chairtwo"
+                    FurnitureImage="chairtwo",                  
                 },
                  new FurnitureTypeModel()
                 {
@@ -75,24 +84,24 @@ namespace Chapter5.ViewModel.Page3ViewModel.FurnitureViewModels
             };
 
         }
-        public void DetailData()
+        public void FurnitureData()
         {
+                
             FurnitureDetails = new ObservableCollection<FurnitureModel>
             {
                new FurnitureModel()
                {
                    FurnitureName="Ivonne Chair",
                    FurniturePrize="300",
-                   FurnitureDiscount="0",
                    FurnitureImage="chairtwo",
-                   FurnitureType=FurnitureModel.FurnitureTypes.Chairs.ToString()
+                   FurnitureType=FurnitureModel.FurnitureTypes.Chairs.ToString(),
                },
 
                new FurnitureModel()
                {
                    FurnitureName="Office Chair",
                    FurniturePrize="300",
-                   FurnitureDiscount="400",
+                   FurnitureDiscount=400,
                    FurnitureImage="chairtwo",
                    FurnitureType=FurnitureModel.FurnitureTypes.Chairs.ToString()
                },
@@ -100,7 +109,7 @@ namespace Chapter5.ViewModel.Page3ViewModel.FurnitureViewModels
                {
                    FurnitureName="Arm Chair",
                    FurniturePrize="100",
-                   FurnitureDiscount="120",
+                   FurnitureDiscount=120,
                    FurnitureImage="chairtwo",
                    FurnitureType=FurnitureModel.FurnitureTypes.Chairs.ToString()
                },
@@ -108,7 +117,6 @@ namespace Chapter5.ViewModel.Page3ViewModel.FurnitureViewModels
                {
                    FurnitureName="Ivonne Chair",
                    FurniturePrize="300",
-                   FurnitureDiscount="0",
                    FurnitureImage="chairtwo",
                    FurnitureType=FurnitureModel.FurnitureTypes.Chairs.ToString()
                },
@@ -117,15 +125,9 @@ namespace Chapter5.ViewModel.Page3ViewModel.FurnitureViewModels
                {
                    FurnitureName="Office Chair",
                    FurniturePrize="300",
-                   FurnitureDiscount="0",
                    FurnitureImage="chairtwo",
                    FurnitureType=FurnitureModel.FurnitureTypes.Chairs.ToString()
                },
-
-
-
-
-
 
 
 
@@ -136,7 +138,7 @@ namespace Chapter5.ViewModel.Page3ViewModel.FurnitureViewModels
                {
                    FurnitureName="Office Table",
                    FurniturePrize="3000",
-                   FurnitureDiscount="4000",
+                   FurnitureDiscount=4000,
                    FurnitureImage="table",
                    FurnitureType = FurnitureModel.FurnitureTypes.Tables.ToString()
                  },
@@ -144,7 +146,6 @@ namespace Chapter5.ViewModel.Page3ViewModel.FurnitureViewModels
                {
                    FurnitureName="Wooden Table",
                    FurniturePrize="200",
-                   FurnitureDiscount="0",
                    FurnitureImage="table",
                    FurnitureType = FurnitureModel.FurnitureTypes.Tables.ToString()
                  },
@@ -158,7 +159,6 @@ namespace Chapter5.ViewModel.Page3ViewModel.FurnitureViewModels
                {
                    FurnitureName="Sofa",
                    FurniturePrize="100",
-                   FurnitureDiscount="10",
                    FurnitureImage="sofa",
                    FurnitureType = FurnitureModel.FurnitureTypes.Sofa.ToString()
                 },
@@ -171,7 +171,6 @@ namespace Chapter5.ViewModel.Page3ViewModel.FurnitureViewModels
                {
                    FurnitureName="Cup Board",
                    FurniturePrize="200",
-                   FurnitureDiscount="0",
                    FurnitureImage="cupboard",
                    FurnitureType = FurnitureModel.FurnitureTypes.CupBoards.ToString()
                },
