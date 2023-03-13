@@ -3,12 +3,68 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Chapter5.View.Page4View.ClothesScreen"
              xmlns:ViewModel="clr-namespace:Chapter5.ViewModel.Page4ViewModel.ClothViewModel"
+             xmlns:Tempalate="clr-namespace:Chapter5.Templates.ClothTemp"
              NavigationPage.HasNavigationBar="False"
              Title="ClothesScreen">
 
     <ContentPage.BindingContext>
         <ViewModel:ClothesViewModel></ViewModel:ClothesViewModel>
     </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <DataTemplate
+            x:Key="NormalTemplate">
+            <Frame
+                Padding="0">
+                <StackLayout
+                    Spacing="10">
+                    <Grid
+                        RowDefinitions="*">
+                        <Image
+                            Grid.Row="0"
+                            BackgroundColor="AntiqueWhite"
+                            HeightRequest="200"
+                            Source="{Binding ClothImage}"></Image>
+                        <Path  
+                            Margin="10"
+                            Grid.Row="0"
+                            HeightRequest="20" 
+                            WidthRequest="20"
+                            x:Name="Heart" 
+                            Fill="Red" 
+                            Aspect="Uniform"  
+                            Stroke="#DDDDD"
+                            VerticalOptions="Start"
+                            HorizontalOptions="End" 
+                            Data="m392.55277,246.98438c42.26025,-110.45162 207.83732,0 0,142.00923c-207.83732,-142.00923 -42.26025,-252.46086 0,-142.00923z"/>
+                    </Grid>
+                    
+                    <Label                      
+                        HorizontalOptions="Center"
+                        Text="{Binding ClothName}"/>
+                    <Label
+                        Margin="0,0,0,10"
+                        HorizontalOptions="Center"
+                        Text="{Binding ClothPrize,StringFormat='$ {0}'}"/>
+                </StackLayout>
+            </Frame>
+        </DataTemplate>
+
+        <DataTemplate
+            x:Key="EmptyTemplate">
+            <StackLayout>
+                <Label
+                    Text="Hello"></Label>
+            </StackLayout>
+        </DataTemplate>
+        <Tempalate:ClothesTemplate
+            x:Key="Selector"
+            NormalTemplate="{StaticResource NormalTemplate}"
+            EmptyTemplate="{StaticResource EmptyTemplate}">
+        </Tempalate:ClothesTemplate>
+    </ContentPage.Resources>
+    
+    
     <ScrollView>
         <StackLayout
             Padding="10">
@@ -17,6 +73,7 @@
                 FontSize="24"
                 Text="Find Your Clothes"
                 VerticalOptions="Center" />
+            
             <Frame
                 BorderColor="White"
                 BackgroundColor="LightYellow"
@@ -51,7 +108,10 @@
             </Frame>
             <CollectionView
                 ItemsSource="{Binding CategoriesDetails}"
-                ItemsLayout="HorizontalList">
+                SelectedItem="{Binding ItemSelect}"
+                SelectionChangedCommand="{Binding SelectionCommand}"
+                ItemsLayout="HorizontalList"
+                SelectionMode="Single">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Frame
@@ -67,7 +127,6 @@
                                                 TargetName="ColorChanged"
                                                 Property="BackgroundColor"
                                                 Value="Black"></Setter>
-                                            
                                         </VisualState.Setters>
                                     </VisualState>
                                 </VisualStateGroup>
@@ -78,6 +137,19 @@
                         </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <CollectionView
+                ItemsSource="{Binding ClothShow}"
+                ItemTemplate="{StaticResource Selector}">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout
+                        Orientation="Vertical"
+                        Span="2"
+                        VerticalItemSpacing="10"
+                        HorizontalItemSpacing="10"
+                     ></GridItemsLayout>
+                </CollectionView.ItemsLayout>
             </CollectionView>
     </StackLayout>
     </ScrollView>

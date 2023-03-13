@@ -261,7 +261,7 @@
             <CollectionView
                 ItemsSource="{Binding ShowDetails}"
                 ItemTemplate="{StaticResource Selector}">
-
+                
             </CollectionView>
         </StackLayout>
     </ScrollView>

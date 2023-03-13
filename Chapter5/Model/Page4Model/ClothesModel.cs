@@ -1,6 +1,12 @@
 ﻿
 namespace Chapter5.Model.Page4Model
 {
+   
+    public enum Gender
+    {
+        Men,
+        Women
+    }
     public enum Categorys
     {
         All,
@@ -19,6 +25,7 @@ namespace Chapter5.Model.Page4Model
         public string ClothName { get; set; }
         public string ClothPrize { get; set; }
         public string ClothImage { get; set; }
+        public Gender GenderS { get; set; }
         public Categorys ClothType {  get; set; }
     }
 }
