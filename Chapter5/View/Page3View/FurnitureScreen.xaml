@@ -6,6 +6,25 @@
              xmlns:Template="clr-namespace:Chapter5.Templates.FurnitureTemp"
              Title="FurnitureScreen">
 
+
+    <NavigationPage.TitleView>
+        <StackLayout
+            Padding="10"
+            Orientation="Horizontal">
+            <Label
+                Text="Furniture Shop"
+                TextColor="White"
+                VerticalOptions="Center"
+                FontSize="18"
+                FontAttributes="Bold"/>
+            <Image
+                Source="shopping"
+                HeightRequest="25"
+                WidthRequest="25"
+                HorizontalOptions="EndAndExpand"></Image>
+        </StackLayout>
+    </NavigationPage.TitleView>
+    
     <ContentPage.BindingContext>
         <ViewModel:FurnitureViewModel></ViewModel:FurnitureViewModel>
     </ContentPage.BindingContext>
@@ -40,9 +59,10 @@
                                 Text="{Binding FurniturePrize,StringFormat='{0} Rs'}"/>
                     </VerticalStackLayout>
                     <Button
+                        BackgroundColor="DarkSlateGray"
                         CornerRadius="10"
-                        WidthRequest="110"
-                        HeightRequest="50"
+                        WidthRequest="120"
+                        HeightRequest="40"
                         Grid.Column="2"                                  
                         Text="Buy Now"></Button>
                 </Grid>
@@ -87,22 +107,93 @@
                         </StackLayout>
                     </VerticalStackLayout>
                     <Button
+                        BackgroundColor="DarkSlateGray"
                         CornerRadius="10"
-                        WidthRequest="110"
-                        HeightRequest="50"
+                        WidthRequest="120"
+                        HeightRequest="40"
                         Grid.Column="2"                                  
                         Text="Buy Now"></Button>
                 </Grid>
             </Frame>
         </DataTemplate>
-
-    
-
+        
         <DataTemplate 
+            x:Key="OutOfStockTemplate">
+
+            <Grid
+                RowDefinitions="*">
+                <Frame
+                 Grid.Row="0"
+                Opacity="0.5"
+                CornerRadius="20"
+                Margin="0,10"
+                Padding="10">
+                    <Grid
+                    ColumnSpacing="10"
+                    ColumnDefinitions="Auto,*,Auto">
+                        <Border
+                        Grid.Column="0"
+                        StrokeShape="RoundRectangle 10">
+                            <Image
+                            WidthRequest="60"
+                            HeightRequest="80"
+                            Source="{Binding FurnitureImage}"></Image>
+                        </Border>
+
+                        <VerticalStackLayout
+                        VerticalOptions="Center"
+                        Grid.Column="1">
+                            <Label
+                            FontAttributes="Bold"
+                            FontSize="18"
+                            Text="{Binding FurnitureName}"/>
+                            <StackLayout
+                            Orientation="Horizontal">
+                                <Label
+                                FontSize="14"
+                                Text="{Binding FurniturePrize,StringFormat='{0} Rs'}"/>
+                                <Label
+                                Margin="0,0,10,0"
+                                HorizontalOptions="EndAndExpand"
+                                FontSize="14"
+                                TextDecorations="Strikethrough"
+                                Text="{Binding FurnitureDiscount,StringFormat='{0} Rs'}"/>
+                            </StackLayout>
+                        </VerticalStackLayout>
+                        <Button
+                        BackgroundColor="DarkSlateGray"
+                        CornerRadius="10"
+                        WidthRequest="120"
+                        HeightRequest="40"
+                        Grid.Column="2"                                  
+                        Text="Buy Now"></Button>
+                    </Grid>
+                </Frame>
+                <Label
+                    TextColor="IndianRed"
+                    Grid.Row="0"
+                    Text="Out Of Stock"
+                    FontAttributes="Bold"
+                    FontSize="24"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Rotation="-15"/>
+            </Grid>
+            
+        </DataTemplate>
+
+        <DataTemplate
             x:Key="EmptyTemplate">
             <StackLayout>
+                <Image
+                    HeightRequest="100"
+                    WidthRequest="100"
+                    Source="shopping"></Image>
                 <Label
-                    Text="No Content"/>
+                    HorizontalOptions="Center"
+                    FontAttributes="Bold"
+                    FontSize="30"
+                    Text="No Product Avalible"/>
             </StackLayout>
         </DataTemplate>
 
@@ -110,6 +201,7 @@
             x:Key="Selector"
             NormalTemplate="{StaticResource NormalTemplate}"
             DiscountTemplate="{StaticResource DiscouuntTemplate}"
+            OutOfStockTemplate="{StaticResource OutOfStockTemplate}"
             EmptyTemplate="{StaticResource EmptyTemplate}"
     ></Template:FurnitureTemplate>
     </ContentPage.Resources>
@@ -123,7 +215,8 @@
             <CollectionView
                 ItemsSource="{Binding FurnitureTypesDetails}"
                 SelectionMode="Single"
-                SelectionChanged="CollectionView_SelectionChanged"
+                SelectedItem="{Binding ItemSelect}"
+                SelectionChangedCommand="{Binding ChangeCommand}"
                 ItemsLayout="HorizontalList">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
@@ -154,6 +247,9 @@
                                 FontAttributes="Bold"
                                 HorizontalOptions="Center"
                                 Text="{Binding FurnitureType}"/>
+                            <Label
+                                HorizontalOptions="Center"
+                                Text="{Binding ItemsTotal,StringFormat='{0} items'}"/>
                         </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
@@ -163,7 +259,7 @@
                 FontSize="18"
                 Text="Trending"/>
             <CollectionView
-                ItemsSource="{Binding FurnitureDetails}"
+                ItemsSource="{Binding ShowDetails}"
                 ItemTemplate="{StaticResource Selector}">
 
             </CollectionView>

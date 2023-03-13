@@ -16,11 +16,5 @@ public partial class FurnitureScreen : ContentPage
 		_viewModel = (FurnitureViewModel)BindingContext;
     }
 	
-    private void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-
-        string name = (e.CurrentSelection.FirstOrDefault() as FurnitureTypeModel)?.FurnitureType;
-        Toast.Make(name, ToastDuration.Long).Show();
-		_viewModel.ItemSelect = name;
-    }
+   
 } 

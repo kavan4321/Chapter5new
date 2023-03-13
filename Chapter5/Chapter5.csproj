@@ -51,21 +51,32 @@
 	<ItemGroup>
 	  <None Remove="Resources\Images\chairtwo.png" />
 	  <None Remove="Resources\Images\chicken.png" />
+	  <None Remove="Resources\Images\couple.png" />
 	  <None Remove="Resources\Images\cupboard.png" />
 	  <None Remove="Resources\Images\deletebutton.png" />
 	  <None Remove="Resources\Images\icecream.png" />
+	  <None Remove="Resources\Images\menfour.png" />
+	  <None Remove="Resources\Images\menone.png" />
+	  <None Remove="Resources\Images\menthree.png" />
+	  <None Remove="Resources\Images\mentwo.png" />
 	  <None Remove="Resources\Images\momos.png" />
 	  <None Remove="Resources\Images\nonvegburger.png" />
 	  <None Remove="Resources\Images\pavbhaji.png" />
 	  <None Remove="Resources\Images\pizza.png" />
 	  <None Remove="Resources\Images\rice.png" />
 	  <None Remove="Resources\Images\sanwitch.png" />
+	  <None Remove="Resources\Images\shopping.png" />
 	  <None Remove="Resources\Images\sofa.png" />
 	  <None Remove="Resources\Images\table.png" />
 	  <None Remove="Resources\Images\tandoori.png" />
 	  <None Remove="Resources\Images\thali.png" />
 	  <None Remove="Resources\Images\vadapav.png" />
 	  <None Remove="Resources\Images\vegburger.png" />
+	  <None Remove="Resources\Images\women1.png" />
+	  <None Remove="Resources\Images\womenfive.png" />
+	  <None Remove="Resources\Images\womenfour.png" />
+	  <None Remove="Resources\Images\womenthree.png" />
+	  <None Remove="Resources\Images\womentwo.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -80,12 +91,21 @@
 	  <MauiXaml Update="View\Page3View\FurnitureScreen.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="View\Page4View\ClothesScreen.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="View\Page6View\FoodDeliveryScreen.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="View\Page2View\ExpenseScreen.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Model\Page5Model\" />
+	  <Folder Include="ViewModel\Page5ViewModel\" />
+	  <Folder Include="View\Page5View\" />
 	</ItemGroup>
 
 </Project>

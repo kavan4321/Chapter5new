@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Chapter5.View.Page4View.ClothesScreen"
+             xmlns:ViewModel="clr-namespace:Chapter5.ViewModel.Page4ViewModel.ClothViewModel"
+             NavigationPage.HasNavigationBar="False"
+             Title="ClothesScreen">
+
+    <ContentPage.BindingContext>
+        <ViewModel:ClothesViewModel></ViewModel:ClothesViewModel>
+    </ContentPage.BindingContext>
+    <ScrollView>
+        <StackLayout
+            Padding="10">
+            <Label            
+                FontAttributes="Bold"
+                FontSize="24"
+                Text="Find Your Clothes"
+                VerticalOptions="Center" />
+            <Frame
+                BorderColor="White"
+                BackgroundColor="LightYellow"
+                Padding="0">
+                <Grid
+                    ColumnDefinitions="*,Auto">
+                    <VerticalStackLayout
+                        Padding="10"
+                        Spacing="10"
+                        VerticalOptions="Center"
+                        Grid.Column="0">
+                        <Label
+                            FontAttributes="Bold"
+                            TextColor="Orange"
+                            Text="Mar 10-Mar 20"/>
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="20"
+                            Text="25% Off"/>
+                        <Label
+                            FontSize="18"
+                            FontAttributes="Bold"
+                            Text="Super Discount"
+                            />
+                    </VerticalStackLayout>
+                    <Image
+                        Margin="10,0,10,0"
+                        HorizontalOptions="End"
+                        HeightRequest="140"
+                        Source="couple"></Image>
+                </Grid>
+            </Frame>
+            <CollectionView
+                ItemsSource="{Binding CategoriesDetails}"
+                ItemsLayout="HorizontalList">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame
+                            x:Name="ColorChanged"
+                            Padding="10"
+                            Margin="10">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup Name="CommonState">
+                                    <VisualState Name="Normal"></VisualState>
+                                    <VisualState Name="Selected">
+                                        <VisualState.Setters>
+                                            <Setter
+                                                TargetName="ColorChanged"
+                                                Property="BackgroundColor"
+                                                Value="Black"></Setter>
+                                            
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Label
+                                x:Name="TextColorChanged"
+                                Text="{Binding Category}"/>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+    </StackLayout>
+    </ScrollView>
+</ContentPage>
